@@ -12,7 +12,7 @@ screen = pygame.display.set_mode(size)
 
 clock = pygame.time.Clock()
 
-player = Player(width, height)
+player = ControlledPlayer(width, height)
 movement_indicator = MovementIndicator(screen)
 
 while 1:
