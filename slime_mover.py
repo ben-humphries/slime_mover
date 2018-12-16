@@ -1,6 +1,7 @@
 import pygame, sys
 
 from player import *
+from movement_indicator import *
 
 pygame.init()
 
@@ -12,6 +13,7 @@ screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 
 player = Player(width, height)
+movement_indicator = MovementIndicator(screen)
 
 while 1:
 
@@ -30,5 +32,6 @@ while 1:
 	screen.fill(BLACK)
 
 	screen.blit(player.sprite, player.rect)
+	movement_indicator.draw(player.moving)
 
 	pygame.display.flip()
