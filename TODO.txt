@@ -1,5 +1,6 @@
 TODO:
 
 - Add random mutation
-- should be weights to every node from every node, not solely 1 : 1
+- should be weights to every node from every node, not solely 1 : 1 DONE
 - try center fitness function again
+- add hidden layer
