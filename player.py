@@ -6,7 +6,6 @@ from copy import copy
 class Player:
 
     speed = 300
-    sprite = pygame.image.load("ball_transparent.png")
 
     width, height = 0,0
 
@@ -17,6 +16,8 @@ class Player:
         self.rect = copy(sprite.get_rect())
 
         self.moving = [0,0,0,0]
+        self.sprite = pygame.image.load("ball_transparent.png")
+
 
 
     def update(self, dt):
@@ -67,6 +68,9 @@ class ControlledPlayer(Player):
 
     def __init__(self, width, height):
 
+        self.sprite = pygame.image.load("ball_transparent.png")
+
+
         self.rect = copy(self.sprite.get_rect())
 
         self.moving = [0,0,0,0]
@@ -82,6 +86,7 @@ class ControlledPlayer(Player):
 
         self.sprite.convert_alpha()
         #self.sprite.fill((255, 255, 255, 100), None, pygame.BLEND_RGBA_MULT)
+
 
     def set_brain(self, brain):
     	self.brain = brain

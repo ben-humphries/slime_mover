@@ -46,7 +46,8 @@ class Generation:
 				player.update(dt)
 				self.screen.blit(player.sprite, player.rect)
 
-			mi.draw(self.players[0].moving)
+			mi.draw(self.players[-1].moving)
+			self.players[-1].sprite.fill((255, 0, 0, 255), None, pygame.BLEND_RGBA_MULT)
 
 			pygame.display.flip()
 
