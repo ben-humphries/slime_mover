@@ -28,7 +28,7 @@ class Generation:
 		mi = MovementIndicator(self.screen)
 
 		elapsedTime = 0
-		while elapsedTime < 1:
+		while elapsedTime < 2:
 			dt = self.clock.tick(60) / 1000
 			#dt = 1
 			elapsedTime += dt
