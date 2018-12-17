@@ -1,19 +1,23 @@
-import pygame, random
+import pygame, random, math
 from neural_network import *
+
+from copy import copy
 
 class Player:
 
     speed = 300
-    sprite = pygame.image.load("ball.png")
-    rect = sprite.get_rect()
-
-    moving = [0, 0, 0, 0]
+    sprite = pygame.image.load("ball_transparent.png")
 
     width, height = 0,0
 
     def __init__(self, width, height):
         self.width = width
         self.height = height
+
+        self.rect = copy(sprite.get_rect())
+
+        self.moving = [0,0,0,0]
+
 
     def update(self, dt):
 
@@ -61,15 +65,26 @@ class Player:
 
 class ControlledPlayer(Player):
 
-    brain = NeuralNetwork()
-
     def __init__(self, width, height):
+
+        self.rect = copy(self.sprite.get_rect())
+
+        self.moving = [0,0,0,0]
+
+        self.brain = NeuralNetwork()
+
         self.brain.randomize_weights()
         self.width = width
         self.height = height
 
-        self.rect.left = 5
-        self.rect.top = height / 2
+        self.rect.left = random.randint(0,width)
+        self.rect.top = random.randint(0,height)
+
+        self.sprite.convert_alpha()
+        #self.sprite.fill((255, 255, 255, 100), None, pygame.BLEND_RGBA_MULT)
+
+    def set_brain(self, brain):
+    	self.brain = brain
 
     def update(self, dt):
 
@@ -113,3 +128,7 @@ class ControlledPlayer(Player):
         self.rect = self.rect.move(tomove)
 
         self.check_collision()
+
+    def get_fitness(self):
+
+    	return self.rect.top + self.rect.left

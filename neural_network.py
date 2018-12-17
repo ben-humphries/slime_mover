@@ -4,12 +4,14 @@ import numpy as np
 class NeuralNetwork():
 
 
-	def __init__(self):
-		pass
+	def __init__(self, weights = [random.uniform(-1, 1), random.uniform(-1, 1)]):
+		self.weights = weights
 
 	def randomize_weights(self):
 		self.weights = [random.uniform(-1, 1), random.uniform(-1, 1)]
-		print(self.weights)
+
+	def set_weights(self, weights):
+		self.weights = weights
 
 	def sigmoid(self, x):
 		return 1 / (1 + np.exp(-x))
