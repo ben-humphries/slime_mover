@@ -1,4 +1,4 @@
-import pygame, random
+import pygame, random, sys
 
 from player import *
 from movement_indicator import *
@@ -71,16 +71,21 @@ class Generation:
 
 		for i in range(PLAYERS_PER_GEN):
 
-			weights = [0, 0]
+			weights = [[0,0], [0,0]]
 
 			player1 = random.choice(self.players)
 			player2 = random.choice(self.players)
 
 			for i in range(len(weights)):
-				if random.randint(0,1) == 1:
-					weights[i] = player1.brain.weights[i]
-				else:
-					weights[i] = player2.brain.weights[i]
+				for j in range(len(weights[i])):
+					if random.randint(0,1) == 1:
+						weights[i][j] = player1.brain.weights[i][j]
+					else:
+						weights[i][j] = player2.brain.weights[i][j]
+
+					if random.randint(0, 9) == 0: #1/10 of the time
+						weights[i][j] += random.uniform(-0.2, 0.2)
+						print("randomly mutated")
 
 			player = ControlledPlayer(self.width, self.height)
 			player.set_brain(NeuralNetwork(weights))

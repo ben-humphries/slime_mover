@@ -132,4 +132,4 @@ class ControlledPlayer(Player):
     def get_fitness(self):
 
     	#return self.rect.top + self.rect.left
-    	return math.sqrt((self.rect.top - self.height / 2)**2 + (self.rect.left - self.width / 2)**2)
+    	return 1 / math.sqrt((self.rect.top - self.height / 2)**2 + (self.rect.left - self.width / 2)**2)
